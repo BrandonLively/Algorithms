@@ -7,16 +7,19 @@ import sys
 # a solution that is more efficient than the naive 
 # recursive solution
 def eating_cookies(n, cache=None):
-    DP = [0 for i in range(0, n)]
+    if n <= 1:
+        return 1
+    calc = [0 for i in range(0, n+1)]
 
     # base cases
-    DP[0] = DP[1] = DP[2] = 1
+    calc[0] = calc[1] = 1
+    calc[2] = 2
 
     # Iterate for all values from 4 to n
-    for i in range(3, n):
-        DP[i] = DP[i - 1] + DP[i - 2] + DP[i - 3]
+    for i in range(3, n + 1):
+        calc[i] = calc[i - 1] + calc[i - 2] + calc[i - 3]
 
-    return DP[n]
+    return calc[n]
 
 
 if __name__ == "__main__":

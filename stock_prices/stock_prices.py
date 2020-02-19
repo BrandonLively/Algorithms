@@ -4,15 +4,13 @@ import argparse
 
 
 def find_max_profit(prices):
-    counter = len(prices) - 1
-    profits = []
-    while counter >= 0:
-        i = 0
-        while i < counter:
-            profits.append(prices[counter] - prices[i])
-            i += 1
-        counter -= 1
-    return max(profits)
+    max_profit, min_price = -float('inf'), float('inf')
+    for price in prices:
+        if price - min_price > max_profit:
+            max_profit = price - min_price
+        if price < min_price:
+            min_price = price
+    return max_profit
 
 if __name__ == '__main__':
     # This is just some code to accept inputs from the command line
